@@ -1,4 +1,6 @@
-namespace Library
+using System;
+
+namespace ClassLibrary
 {
     public class Cotizacion
     {
@@ -7,4 +9,4 @@ namespace Library
         public DateTime FechaLimite { get; set; }
         public string Descripcion { get; set; }
     }
-    }
+}
