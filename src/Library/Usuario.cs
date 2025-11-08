@@ -5,28 +5,25 @@ namespace ClassLibrary
     public class Usuario : Persona
     {
         public bool Suspendido { get; set; }
-        public GenericContainer<Cliente> ListaClientesDeUsuario { get; set; }
-        public GenericContainer<Venta> ListaVentas { get; set; }
-        public GenericContainer<Cotizacion> ListaCotizaciones { get; set; }
-        public GenericContainer<Interaccion> ListaInteracciones { get; set; }
+        public List<Cliente> ListaClientesDeUsuario { get; set; }
+        public List<Venta> ListaVentas { get; set; }
+        public List<Cotizacion> ListaCotizaciones { get; set; }
+        public List<Interaccion> ListaInteracciones { get; set; }
 
         public Usuario(
             string nombre,
             string email,
             string apellido,
-            bool suspendido,
-            GenericContainer<Cliente>? listaClientesDeUsuario = null,
-            GenericContainer<Venta>? listaVentas = null,
-            GenericContainer<Cotizacion>? listaCotizaciones = null,
-            GenericContainer<Interaccion>? listaInteracciones = null
+            bool suspendido
         )
             : base(nombre, email, apellido)
         {
             Suspendido = suspendido;
-            ListaClientesDeUsuario = listaClientesDeUsuario ?? new GenericContainer<Cliente>();
-            ListaVentas = listaVentas ?? new GenericContainer<Venta>();
-            ListaCotizaciones = listaCotizaciones ?? new GenericContainer<Cotizacion>();
-            ListaInteracciones = listaInteracciones ?? new GenericContainer<Interaccion>();
+            ListaClientesDeUsuario = new List<Cliente>();
+            ListaVentas = new List<Venta>();
+            ListaCotizaciones = new List<Cotizacion>();
+            ListaInteracciones = new List<Interaccion>();
+
         }
 
         public List<Cliente> VerClientes()
@@ -96,11 +93,11 @@ namespace ClassLibrary
         public List<Cliente> VerClientesConPocaInteraccion()
         {
             List<Cliente> clientesPocaInteraccion = new List<Cliente>();
-            foreach (Cliente cl in ListaClientesDeUsuario)
+            foreach (Cliente cliente in ListaClientesDeUsuario)
             {
-                if (cl.ListaInteraccion.Count() <= 5)
+                if (cliente.ListaInteraccion.Count <= 5)
                 {
-                    clientesPocaInteraccion.Add(cl);
+                    clientesPocaInteraccion.Add(cliente);
                 }
             }
 

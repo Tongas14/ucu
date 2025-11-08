@@ -18,7 +18,7 @@ namespace ClassLibrary
         public DateTime FechaDeNacimiento { get; set; }
         public List<string> Etiquetas { get; set; }
         public Usuario UsuarioAsignado { get; set; }
-        private List<Interaccion> ListaInteraccion { get; set; }
+        public List<Interaccion> ListaInteraccion { get; set; }
 
         public Cliente(string nombre, string apellido, string email, string telefono, string genero,
             DateTime fechaDeNacimiento, Usuario usuarioAsignado)
