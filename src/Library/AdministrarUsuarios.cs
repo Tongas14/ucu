@@ -5,7 +5,6 @@ namespace Library
 {
     public class AdministrarUsuarios
     {
-        // Una sola lista para TODOS los usuarios del sistema
         private static List<Usuario> usuarios = new List<Usuario>();
 
         public void Crear(string nombre, string apellido, string email)
