@@ -38,6 +38,7 @@ namespace ClassLibrary
         public void EliminarCliente(Cliente cliente)
         {
             AdministrarClientes.Instancia.EliminarCliente(cliente);
+            this.ListaClientesDeUsuario.Remove(cliente);
         }
 
         public void ModificarCliente(Cliente cliente, string? unNombre, string? unApellido, string? unTelefono, string? unCorreo, DateTime unaFechaNacimiento, string? unGenero )
