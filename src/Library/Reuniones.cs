@@ -6,7 +6,7 @@ namespace ClassLibrary
     {
         public string Lugar { get; set; }
     
-        public Reuniones(Persona remitente, Persona destinatario, DateTime fecha, string tema, string lugar) : base(remitente, destinatario,
+        public Reuniones(Persona emisor, Persona receptor, DateTime fecha, string tema, string lugar) : base(emisor, receptor,
             fecha, tema)
         {
             Lugar = lugar;
