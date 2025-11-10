@@ -22,7 +22,7 @@ namespace ClassLibrary
 
         public Cliente(string nombre, string apellido, string email, string telefono, string genero,
             DateTime fechaDeNacimiento, Usuario usuarioAsignado)
-            : base(nombre, apellido, email)
+            : base(nombre, apellido, email, telefono)
         {
             this.Telefono = telefono;
             this.Genero = genero;

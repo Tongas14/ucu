@@ -6,13 +6,14 @@ namespace ClassLibrary
         public string Apellido{ get; set; }
         public string Email { get; set; }
         
-        public int Telefono{ get; set; }
+        public string Telefono{ get; set; }
 
-        public Persona(string nombre, string apellido, string email)
+        public Persona(string nombre, string apellido, string email, string telefono)
         {
             Nombre = nombre;
             Apellido = apellido;
             Email = email;
+            Telefono = telefono;
         }
     }
 }

@@ -14,9 +14,10 @@ namespace ClassLibrary
             string nombre,
             string email,
             string apellido,
+            string telefono,
             bool suspendido
         )
-            : base(nombre, email, apellido)
+            : base(nombre, email, apellido, telefono)
         {
             Suspendido = suspendido;
             ListaClientesDeUsuario = new List<Cliente>();

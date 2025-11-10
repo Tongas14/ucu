@@ -4,17 +4,18 @@ namespace ClassLibrary
 {
     public class Emails : Interaccion
     {
-        public string contenido { get; set; }
-        public Emails(Persona remitente, Persona destinatario, DateTime fecha, string tema) : base(remitente, destinatario,
-            fecha, tema)
-        {
-        
-        }
+        public string DireccionEmisor { get; set; }
+        public string DireccionReceptor { get; set; }
+        public string Contenido { get; set; }
 
-        public void Enviar()
+        public Emails(Persona emisor, Persona receptor, DateTime fecha, string tema, string contenido) : base(
+            emisor, receptor, fecha, tema)
         {
-        
+            this.DireccionEmisor = emisor.Email;
+            this.DireccionReceptor = receptor.Email;
+            this.Contenido = contenido;
         }
+        
     }
 }
 
