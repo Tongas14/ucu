@@ -15,9 +15,10 @@ namespace Library
         }
         public void CrearCliente(string nombres, string apellidos, string telefonos, string emails, string generos, DateTime fechanacimiento, Usuario usuarioasignados )
         {
-                var cliente = new Cliente(nombres, apellidos, emails, telefonos, generos, fechanacimiento, usuarioasignados );
-                ListaClientes.Add(cliente);
-                usuarioasignados.AgregarCliente(cliente);
+            //Añadir excepción cuando el usuario está suspendido    
+            var cliente = new Cliente(nombres, apellidos, emails, telefonos, generos, fechanacimiento, usuarioasignados );
+            ListaClientes.Add(cliente);
+            usuarioasignados.AgregarCliente(cliente);
                 
         }
         public void EliminarCliente(Cliente cliente)
@@ -25,15 +26,27 @@ namespace Library
             ListaClientes.Remove(cliente);
         }
 
-        public void ModificarCliente(Cliente cliente, string? unNombre, string? unApellido, string? unTelefono, string? unCorreo, DateTime unaFechaNacimiento, string? unGenero )
+        public void ModificarCliente(Cliente cliente, string? unNombre, string? unApellido, string? unTelefono, string? unCorreo, DateTime? unaFechaNacimiento, string? unGenero )
         {
-            if (cliente == null) return;
-            cliente.Nombre = unNombre;
-            cliente.Apellido = unApellido;
-            cliente.Telefono = unTelefono;
-            cliente.Genero = unGenero;
-            cliente.Email = unCorreo;
-            cliente.FechaDeNacimiento = unaFechaNacimiento;
+            //Añadir excepciones cuando el cliente es nulo o el usuario está suspendido
+            if (unNombre != null)
+                cliente.Nombre = unNombre;
+
+            if (unApellido != null)
+                cliente.Apellido = unApellido;
+
+            if (unTelefono != null)
+                cliente.Telefono = unTelefono;
+
+            if (unCorreo != null)
+                cliente.Email = unCorreo;
+
+            if (unaFechaNacimiento.HasValue)
+                cliente.FechaDeNacimiento = unaFechaNacimiento.Value;
+            if (unGenero != null)
+            {
+                cliente.Genero = unGenero;
+            }
         }
         
         public void ModificarCliente(Cliente cliente, string? unNombre, string? unApellido, string? unTelefono, string? unCorreo, string? unGenero )
