@@ -198,12 +198,26 @@ namespace ClassLibrary
         public List<Cliente> VerClientesEnVisto()
         {
             List<Cliente> clientesVistos = new List<Cliente>();
-            foreach (Cliente cl in ListaClientesDeUsuario)
+
+            // Primero actualizamos el estado de las interacciones globales
+            // Para modificar AdministrarInteracciones._instancia.ActualizarInteraccionesRespondidas();
+
+            // Luego revisamos los clientes asignados al usuario
+            foreach (Cliente cliente in ListaClientesDeUsuario)
             {
-                if (cl.UsuarioAsignado != null) // etiqueta visto
+                bool tieneInteraccionRespondida = false;
+
+                foreach (Interaccion i in cliente.ListaInteracciones)
                 {
-                    clientesVistos.Add(cl);
+                    if (i is IRespondible r && r.Respondido)
+                    {
+                        tieneInteraccionRespondida = true;
+                        break;
+                    }
                 }
+
+                if (tieneInteraccionRespondida)
+                    clientesVistos.Add(cliente);
             }
 
             return clientesVistos;
