@@ -27,7 +27,32 @@ namespace Library
         {
             unaInteraccion.AddNota(nota);
         }
+        
+        public void ActualizarInteraccionesRespondidas()
+        {
+            // Filtramos solo las interacciones que implementan IRespondible
+            List<IRespondible> respondibles = new List<IRespondible>();
 
+            foreach (Interaccion i in ListaInteracciones)
+            {
+                if (i is IRespondible r)
+                {
+                    respondibles.Add(r);
+                }
+            }
+
+            // Ahora comparamos entre todas las posibles combinaciones
+            foreach (IRespondible original in respondibles)
+            {
+                foreach (IRespondible posibleRespuesta in respondibles)
+                {
+                    if (original != posibleRespuesta && original.EsRespuestaDe(posibleRespuesta))
+                    {
+                        original.MarcarComoRespondido();
+                    }
+                }
+            }
+        }
         public void AgregarLlamada() { }
         public void AgregarReunion() { }
         public void AgregarEmails() { }
