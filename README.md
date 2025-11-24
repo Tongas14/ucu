@@ -37,3 +37,9 @@ Lo más complicado para mí fue arrancar el UML desde cero: entender cómo tení
 Me gustó mucho trabajar con mis compañeros. Fue una excelente forma de aprender a comunicarnos en equipo, dividir tareas, coordinar horarios y resolver problemas juntos.  
 
 En conclusión, gracias al proyecto estoy consolidando un montón de conceptos que damos en clase, me está enseñando a pensar de manera más estructurada para resolver conflictos y creo que logramos una comunicación súper eficiente dentro del grupo.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Descripción del proyecto:
+Este proyecto consiste en el desarrollo de un CRM (Customer Relationship Management) implementado como un chatbot conversacional. El objetivo es crear un sistema que permita gestionar clientes, sus datos, interacciones (llamadas, reuniones, mensajes, correos), ventas, cotizaciones, etiquetas y reportes, todo a través de una interfaz de chat.
+El bot se integra con Discord y permite a los usuarios realizar todas las operaciones del CRM mediante comandos y conversaciones naturales.
