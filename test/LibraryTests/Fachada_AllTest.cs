@@ -284,7 +284,7 @@ namespace Tests
             var user = CrearUsuarioNormal("u12");
             fachada.SetUsuario(user);
 
-            var venta = new Venta(new Dictionary<Producto,int>(), 0, DateTime.Now, null, user);
+            var venta = new Venta(new Dictionary<Producto,int>(),  DateTime.Now, null, user);
             fachada.RegistrarVenta(venta);
 
             Assert.That(1 == user.ObtenerVentas().Count);
@@ -299,8 +299,8 @@ namespace Tests
             var cliente = CrearClienteSimple(user, "CliV");
             user.AgregarCliente(cliente);
 
-            var v1 = new Venta(new Dictionary<Producto,int>(), 0, new DateTime(2023,1,1), cliente, user);
-            var v2 = new Venta(new Dictionary<Producto,int>(), 0, new DateTime(2023,2,1), cliente, user);
+            var v1 = new Venta(new Dictionary<Producto,int>(),  new DateTime(2023,1,1), cliente, user);
+            var v2 = new Venta(new Dictionary<Producto,int>(),  new DateTime(2023,2,1), cliente, user);
 
             user.RegistrarVenta(v1);
             user.RegistrarVenta(v2);
@@ -317,7 +317,7 @@ namespace Tests
             var user = CrearUsuarioNormal("u14");
             fachada.SetUsuario(user);
 
-            var v = new Venta(new Dictionary<Producto,int>(), 0, DateTime.Now, null, user);
+            var v = new Venta(new Dictionary<Producto,int>(),  DateTime.Now, null, user);
             user.RegistrarVenta(v);
 
             var listado = fachada.ObtenerVentas();
