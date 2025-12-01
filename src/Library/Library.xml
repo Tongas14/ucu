@@ -4,6 +4,44 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="M:Library.Commands.ComandosUsuario.CrearUserAsync(System.String,System.String,System.String,System.String)">
+            <summary>
+            Crea un nuevo usuario en el sistema con nombre, email, apellido y teléfono.
+            </summary>
+            <param name="nombre">Nombre del usuario.</param>
+            <param name="apellido">Apellido del usuario.</param>
+            <param name="email">Email del usuario.</param>
+            <param name="telefono">Teléfono del usuario.</param>
+        </member>
+        <member name="T:Library.Commands.UserInfoCommand">
+            <summary>
+            Esta clase implementa el comando 'userinfo', alias 'who' o 'whois' del bot.
+            Este comando retorna información sobre el usuario que envía el mensaje o sobre
+            otro usuario si se incluye como parámetro..
+            </summary>
+        </member>
+        <member name="M:Library.Commands.UserInfoCommand.ExecuteAsync(System.String)">
+            <summary>
+            Implementa el comando 'userinfo', alias 'who' o 'whois' del bot.
+            </summary>
+            <param name="displayName">El nombre de usuario de Discord a buscar.</param>
+        </member>
+        <member name="T:Library.Services.Bot">
+            <summary>
+            Esta clase implementa el bot de Discord.
+            </summary>
+        </member>
+        <member name="T:Library.Services.BotLoader">
+            <summary>
+            Esta clase ejecuta el bot de Discord hasta que en la terminal donde se
+            ejecuta el bot se oprime la tecla 'Q'.
+            </summary>
+        </member>
+        <member name="T:Library.Services.IBot">
+            <summary>
+            La interfaz del Bot de Discord para usar con inyección de dependencias.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.Train">
             <summary>
             Esta clase representa un tren muy básico.

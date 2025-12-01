@@ -6,6 +6,8 @@
 
 using System;
 using ClassLibrary;
+using Library;
+using Library.Services;
 
 namespace ConsoleApplication
 {
@@ -15,13 +17,25 @@ namespace ConsoleApplication
     public static class Program
     {
         /// <summary>
-        /// Punto de entrada al programa principal.
+        /// Punto de entrada al programa.
         /// </summary>
-        public static void Main()
+        private static void Main(string [] args)
         {
-            var train = new Train();
-            train.StartEngines();
-            Console.WriteLine("Hello World!");
+            if (args.Length != 0)
+            {
+                Console.WriteLine("Por consola");
+            }
+            else
+            {
+                DemoBot();
+            }
+        }
+        
+
+        private static void DemoBot()
+        {
+            
+            BotLoader.LoadAsync().GetAwaiter().GetResult();
         }
     }
 }

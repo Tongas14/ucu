@@ -13,7 +13,7 @@ namespace ClassLibrary
                 double total = 0;
                 foreach (KeyValuePair<Producto, int> par in ProductosCantidad)
                 {
-                    total += par.Key.Precio + par.Value;
+                    total += par.Key.Precio * par.Value;
                 }
 
                 return total;

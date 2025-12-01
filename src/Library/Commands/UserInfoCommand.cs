@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using Discord.Commands;
 using Discord.WebSocket;
-using Ucu.Poo.DiscordBot.Domain;
 
 namespace Library.Commands
 {
@@ -42,12 +41,12 @@ namespace Library.Commands
                 }
             }
 
-            string userName =
-                displayName ?? CommandHelper.GetDisplayName(Context);
+          //  string userName =
+          //      displayName ?? CommandHelper.GetDisplayName(Context);
 
-            string result = fac.GetUserInfo(userName);
+          //  string result = fac.GetUserInfo(userName);
 
-            await ReplyAsync(result);
+           // await ReplyAsync(result);
         }
     }
 }

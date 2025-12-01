@@ -38,7 +38,9 @@ namespace Tests
         public class TestInteraccion : Interaccion
         {
             public TestInteraccion(Persona emisor, Persona receptor, DateTime fecha, string tema)
-                : base(emisor, receptor, fecha, tema) { }
+                : base(emisor, receptor, fecha, tema)
+            {
+            }
         }
 
         // ---------- SETUP ENTIDADES (rápidas) ----------
@@ -52,7 +54,8 @@ namespace Tests
             new Vendedor(nombre, $"{nombre.ToLower()}@mail", "Apellido", "099");
 
         private Cliente CrearClienteSimple(Usuario usuarioAsignado, string nombre = "Cli") =>
-            new Cliente(nombre, "Apellido", $"{nombre.ToLower()}@mail", "111", "M", new DateTime(1990,1,1), usuarioAsignado);
+            new Cliente(nombre, "Apellido", $"{nombre.ToLower()}@mail", "111", "M", new DateTime(1990, 1, 1),
+                usuarioAsignado);
 
         private Producto CrearProducto(string nombre = "Prod", double precio = 100) =>
             new Producto(nombre, precio);
@@ -94,7 +97,8 @@ namespace Tests
             fachada.SetUsuario(user);
 
             // Crear y añadir un cliente manualmente mediante AdministrarClientes (para que esté en la lista interna)
-            AdministrarClientes.Instancia.CrearCliente("Cli","A","111","c@c.com","M", new DateTime(1990,1,1), user);
+            AdministrarClientes.Instancia.CrearCliente("Cli", "A", "111", "c@c.com", "M", new DateTime(1990, 1, 1),
+                user);
             var cliente = user.VerClientes()[0];
 
             // Confirmación precondición
@@ -112,7 +116,8 @@ namespace Tests
             var user = CrearUsuarioNormal("u3");
             fachada.SetUsuario(user);
 
-            AdministrarClientes.Instancia.CrearCliente("Old","Old","000","old@o.com","M", new DateTime(1990,1,1), user);
+            AdministrarClientes.Instancia.CrearCliente("Old", "Old", "000", "old@o.com", "M", new DateTime(1990, 1, 1),
+                user);
             var cliente = user.VerClientes()[0];
 
             // Modificar nombre y telefono
@@ -128,7 +133,7 @@ namespace Tests
             var user = CrearUsuarioNormal("u4");
             fachada.SetUsuario(user);
 
-            AdministrarClientes.Instancia.CrearCliente("X","Y","111","x@y.com","F", new DateTime(1990,1,1), user);
+            AdministrarClientes.Instancia.CrearCliente("X", "Y", "111", "x@y.com", "F", new DateTime(1990, 1, 1), user);
             var cliente = user.VerClientes()[0];
 
             fachada.AgregarEtiquetaACliente(cliente, "VIP");
@@ -141,7 +146,8 @@ namespace Tests
             var user = CrearUsuarioNormal("u5");
             fachada.SetUsuario(user);
 
-            AdministrarClientes.Instancia.CrearCliente("Buscado","Apellido","777","b@b.com","M", new DateTime(1990,1,1), user);
+            AdministrarClientes.Instancia.CrearCliente("Buscado", "Apellido", "777", "b@b.com", "M",
+                new DateTime(1990, 1, 1), user);
 
             // Buscar por nombre: el método de fachada delega a user.BuscarCliente que a su vez llama a AdministrarClientes.BuscarCliente
             // La fachada no devuelve el cliente sino que user.BuscarCliente hace la búsqueda internamente; sin embargo, AdministrarClientes.BuscarCliente devuelve el cliente.
@@ -172,7 +178,7 @@ namespace Tests
 
             var lista2 = fachada.VerInteraccionesCliente(cliente);
             Assert.That(lista2 != null);
-            Assert.That(lista2.Count,Is.GreaterThanOrEqualTo(1));
+            Assert.That(lista2.Count, Is.GreaterThanOrEqualTo(1));
             Assert.That("Tema1" == lista2[0].Tema);
         }
 
@@ -192,7 +198,8 @@ namespace Tests
             cliente.ListaInteracciones.Add(i2);
 
             // Filtrar por fecha 2023-01-01
-            var filtradasFecha = AdministrarInteracciones.Instancia.VerInteraccionesCliente(cliente, null, new DateTime(2023,1,1));
+            var filtradasFecha =
+                AdministrarInteracciones.Instancia.VerInteraccionesCliente(cliente, null, new DateTime(2023, 1, 1));
             Assert.That(filtradasFecha != null);
             Assert.That(1 == filtradasFecha.Count);
 
@@ -259,7 +266,8 @@ namespace Tests
         public void CrearVenta_RegistraYDevuelveVenta()
         {
             var vendedor = CrearVendedor("v1");
-            var user = CrearUsuarioNormal("u11"); // will be used to check ListaVentas after facade uses user's crearVenta internally
+            var user = CrearUsuarioNormal(
+                "u11"); // will be used to check ListaVentas after facade uses user's crearVenta internally
             fachada.SetUsuario(user);
 
             var cliente = CrearClienteSimple(user, "ClienteV");
@@ -282,7 +290,7 @@ namespace Tests
             var user = CrearUsuarioNormal("u12");
             fachada.SetUsuario(user);
 
-            var venta = new Venta(new Dictionary<Producto,int>(),  DateTime.Now, null, user);
+            var venta = new Venta(new Dictionary<Producto, int>(), DateTime.Now, null, user);
             fachada.RegistrarVenta(venta);
 
             Assert.That(1 == user.ObtenerVentas().Count);
@@ -297,13 +305,13 @@ namespace Tests
             var cliente = CrearClienteSimple(user, "CliV");
             user.AgregarCliente(cliente);
 
-            var v1 = new Venta(new Dictionary<Producto,int>(),  new DateTime(2023,1,1), cliente, user);
-            var v2 = new Venta(new Dictionary<Producto,int>(),  new DateTime(2023,2,1), cliente, user);
+            var v1 = new Venta(new Dictionary<Producto, int>(), new DateTime(2023, 1, 1), cliente, user);
+            var v2 = new Venta(new Dictionary<Producto, int>(), new DateTime(2023, 2, 1), cliente, user);
 
             user.RegistrarVenta(v1);
             user.RegistrarVenta(v2);
 
-            var res = fachada.VerVentasPorPeriodo(new DateTime(2023,1,1), new DateTime(2023,1,31));
+            var res = fachada.VerVentasPorPeriodo(new DateTime(2023, 1, 1), new DateTime(2023, 1, 31));
             Assert.That(1 == res.Count);
             Assert.That(v1 == res[0]);
         }
@@ -315,7 +323,7 @@ namespace Tests
             var user = CrearUsuarioNormal("u14");
             fachada.SetUsuario(user);
 
-            var v = new Venta(new Dictionary<Producto,int>(),  DateTime.Now, null, user);
+            var v = new Venta(new Dictionary<Producto, int>(), DateTime.Now, null, user);
             user.RegistrarVenta(v);
 
             var listado = fachada.ObtenerVentas();
@@ -379,10 +387,7 @@ namespace Tests
             var user = CrearUsuarioNormal("notadmin");
             fachada.SetUsuario(user);
 
-            Assert.Throws<PermisoDenegadoException>(() =>
-            {
-                fachada.CrearUsuario("X","x@mail","Ap","11");
-            });
+            Assert.Throws<PermisoDenegadoException>(() => { fachada.CrearUsuario("X", "x@mail", "Ap", "11"); });
         }
 
         [Test]
@@ -407,7 +412,7 @@ namespace Tests
             var admin = CrearAdministrador("AdminZ");
             fachada.SetUsuario(admin);
 
-            AdministrarUsuarios.Instancia.Crear("A","B","c@c.com","11");
+            AdministrarUsuarios.Instancia.Crear("A", "B", "c@c.com", "11");
             var lista = AdministrarUsuarios.Instancia.VerTodos();
             Assert.That(1 == lista.Count);
 
@@ -432,17 +437,11 @@ namespace Tests
             var cli = CrearClienteSimple(vend1, "CtoMove");
             vend1.ListaClientesDeUsuario.Add(cli);
 
-            Assert.Throws<PermisoDenegadoException>(() =>
-            {
-                fachada.adne(cli, vend1, vend2);
-            });
+            Assert.Throws<PermisoDenegadoException>(() => { fachada.adne(cli, vend1, vend2); });
 
             // Ahora que la fachada tiene un vendedor como user, la reasignación debe funcionar
             fachada.SetUsuario(vend1);
-            Assert.DoesNotThrow(() =>
-            {
-                fachada.adne(cli, vend1, vend2);
-            });
+            Assert.DoesNotThrow(() => { fachada.adne(cli, vend1, vend2); });
 
             // cliente debe estar en vend2.ListaClientesDeUsuario (después del cambio)
             Assert.That(vend2.ListaClientesDeUsuario, Does.Contain(cli));
@@ -482,4 +481,5 @@ namespace Tests
             Assert.That("Cli5" == resultado[0].Nombre);
         }
     }
+
 }

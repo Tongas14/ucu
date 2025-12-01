@@ -2,7 +2,7 @@ using System;
 using ClassLibrary;
 using System.Collections.Generic;
 using Library.Excepciones;
-using Ucu.Poo.DiscordBot.Domain;
+
 
 namespace Library
 {
@@ -12,7 +12,7 @@ namespace Library
 
         private Fachada()
         {
-            this.usersRepository = new UsersRepository();
+            
         }
         public static Fachada Instancia
         {
@@ -31,40 +31,9 @@ namespace Library
         {
             user = unUsuario;
         }
-        private IUsersRepository usersRepository;
-
-        /// <summary>
-        /// Devuelve información del usuario cuyo nombre de usuario en Discord
-        /// se recibe como parámetro.
-        /// </summary>
-        /// <param name="userName">El nombre de usuario de Discord del usuario
-        /// buscado. </param>
-        /// <returns>Un texto con la información del usuario <see cref="User"/>
-        /// con el nombre de usuario provisto, o texto que indica que no existe
-        /// un usuario con ese nombre.
-        /// </returns>
-        public string GetUserInfo(string userName)
-        {
-            string result;
-
-            User userFound = this.usersRepository.Find(userName);
-            if (userFound == null)
-            {
-                result =
-                    $"El usuario de Discord '{userName}' no es usuario de esta aplicación.";
-            }
-            else
-            {
-                string roles = string.Join(", ", userFound.Roles);
-                result = $"El usuario '{userName}' tiene los roles " +
-                         $"'{roles}' en esta aplicación.";
-            }
-
-            return result;
-        }
-
         
         private Usuario user { get; set; }
+        
         
         private Administrador VerificarAdministrador(Usuario usuario)
         {
