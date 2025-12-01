@@ -12,6 +12,8 @@ namespace Tests
     [TestFixture]
     public class FachadaAllTests
     {
+        string firstAdminName = configuration["FirstAdmin"];
+
         private Fachada fachada;
 
         [SetUp]

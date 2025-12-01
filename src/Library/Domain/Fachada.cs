@@ -213,6 +213,11 @@ namespace Library
             admin.ReahnilitarUsuario(unUsuario);
         }
 
+        public List<Usuario> verTodosUsuarios()
+        {
+            return AdministrarUsuarios.Instancia.VerTodos();
+        }
+
         public void adne(Cliente cliente, Vendedor vendedor, Vendedor vendedorNuevo)
         {
             vendedor = VerificarVendedor(user);

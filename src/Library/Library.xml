@@ -4,6 +4,56 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="M:Library.Commands.ComandosUsuario.CrearUserAsync(System.String,System.String,System.String,System.String)">
+            <summary>
+            Crea un nuevo usuario en el sistema con nombre, email, apellido y teléfono.
+            </summary>
+            <param name="nombre">Nombre del usuario.</param>
+            <param name="apellido">Apellido del usuario.</param>
+            <param name="email">Email del usuario.</param>
+            <param name="telefono">Teléfono del usuario.</param>
+        </member>
+        <member name="T:Library.Commands.UserInfoCommand">
+            <summary>
+            Esta clase implementa el comando 'userinfo', alias 'who' o 'whois' del bot.
+            Este comando retorna información sobre el usuario que envía el mensaje o sobre
+            otro usuario si se incluye como parámetro..
+            </summary>
+        </member>
+        <member name="M:Library.Commands.UserInfoCommand.ExecuteAsync(System.String)">
+            <summary>
+            Implementa el comando 'userinfo', alias 'who' o 'whois' del bot.
+            </summary>
+            <param name="displayName">El nombre de usuario de Discord a buscar.</param>
+        </member>
+        <member name="M:Library.Fachada.GetUserInfo(System.String)">
+            <summary>
+            Devuelve información del usuario cuyo nombre de usuario en Discord
+            se recibe como parámetro.
+            </summary>
+            <param name="userName">El nombre de usuario de Discord del usuario
+            buscado. </param>
+            <returns>Un texto con la información del usuario <see cref="T:Ucu.Poo.DiscordBot.Domain.User"/>
+            con el nombre de usuario provisto, o texto que indica que no existe
+            un usuario con ese nombre.
+            </returns>
+        </member>
+        <member name="T:Library.Services.Bot">
+            <summary>
+            Esta clase implementa el bot de Discord.
+            </summary>
+        </member>
+        <member name="T:Library.Services.BotLoader">
+            <summary>
+            Esta clase ejecuta el bot de Discord hasta que en la terminal donde se
+            ejecuta el bot se oprime la tecla 'Q'.
+            </summary>
+        </member>
+        <member name="T:Library.Services.IBot">
+            <summary>
+            La interfaz del Bot de Discord para usar con inyección de dependencias.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.Train">
             <summary>
             Esta clase representa un tren muy básico.
@@ -30,6 +80,141 @@
             <returns>
             <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
             </returns>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Domain.Role">
+            <summary>
+            Esta clase representa un rol en la aplicación.
+            </summary>
+        </member>
+        <member name="P:Ucu.Poo.DiscordBot.Domain.Role.Name">
+            <summary>
+            Obtiene el nombre del rol.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Domain.Role.#ctor(System.String)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Ucu.Poo.DiscordBot.Domain.Role"/> con
+            el nombre que se recibe como argumento.
+            </summary>
+            <param name="name">El nombre del rol.</param>
+            <exception cref="T:System.ArgumentNullException">Cuando no se provee un nombre
+            al crear el rol.</exception>
+        </member>
+        <member name="P:Ucu.Poo.DiscordBot.Domain.Role.Admin">
+            <summary>
+            Un rol de administrador. Aunque nada previere que pueda haber varios
+            roles de administrador, este rol se provee para facilitar el uso de
+            los roles comunes.
+            </summary>
+        </member>
+        <member name="P:Ucu.Poo.DiscordBot.Domain.Role.User">
+            <summary>
+            Un rol de usuario. Aunque nada previere que pueda haber varios
+            roles de usuario, este rol se provee para facilitar el uso de los
+            roles comunes.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Domain.Role.ToString">
+            <summary>
+            Retorna una representación del rol, que consiste en su nombre.
+            </summary>
+            <returns>El nombre del rol.</returns>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Domain.User">
+            <summary>
+            Esta clase representa un usuario de la aplicación.
+            </summary>
+        </member>
+        <member name="P:Ucu.Poo.DiscordBot.Domain.User.UserName">
+            <summary>
+            Retorna el nombre del usuario en Discord.
+            </summary>
+        </member>
+        <member name="P:Ucu.Poo.DiscordBot.Domain.User.Roles">
+            <summary>
+            Obtiene la lista de roles del usuario.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Domain.User.#ctor(System.String)">
+            <summary>
+            Crea una nueva instancia de la clase <see cref="T:Ucu.Poo.DiscordBot.Domain.User"/>.
+            </summary>
+            <param name="userName">El nombre de usuario de Discord de este
+            usuario.</param>
+            <exception cref="T:System.ArgumentNullException">Cuando el nombre de usuario
+            de Discord está en blanco o es <c>null</c>.</exception>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Domain.User.HasRole(Ucu.Poo.DiscordBot.Domain.Role)">
+            <summary>
+            Determina si un usuario tiene un rol <see cref="T:Ucu.Poo.DiscordBot.Domain.Role"/>.
+            </summary>
+            <param name="role">El rol a buscar.</param>
+            <returns><c>true</c> si el usuario tiene el rol buscado, o
+            <c>false</c> en caso contrario.</returns>
+            <exception cref="T:System.ArgumentNullException">Cuando el rol a buscar es
+            <c>null</c>.</exception>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Domain.User.AddRole(Ucu.Poo.DiscordBot.Domain.Role)">
+            <summary>
+            Agrega un rol <see cref="T:Ucu.Poo.DiscordBot.Domain.Role"/> al usuario.
+            </summary>
+            <param name="role">El rol a agregar</param>
+            <exception cref="T:System.ArgumentNullException">Cuando es rol a agregar es
+            <c>null</c>.</exception>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Domain.User.RemoveRole(Ucu.Poo.DiscordBot.Domain.Role)">
+            <summary>
+            Remueve el rol <see cref="T:Ucu.Poo.DiscordBot.Domain.Role"/> del usuario.
+            </summary>
+            <param name="role">El rol a remover</param>
+            <exception cref="T:System.ArgumentNullException">Cuando el rol a remover es
+            <c>null</c>.</exception>
+            <exception cref="T:System.InvalidOperationException">Cuando el usuario no
+            tiene el rol a remover.</exception>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Domain.IUsersRepository">
+            <summary>
+            Un tipo de repositorio de usuarios que se implementa con
+            <see cref="T:Ucu.Poo.DiscordBot.Domain.UsersRepository"/> en producción
+            y por un mock en las pruebas.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Domain.IUsersRepository.Find(System.String)">
+            <summary>
+            Busca un usuario <see cref="T:Ucu.Poo.DiscordBot.Domain.User"/> en el repositorio que tenga
+            el nombre de usuario de Discord provisto..
+            </summary>
+            <param name="userName">El nombre de usuario de Discord a
+            buscar.</param>
+            <returns>El usuario encontrado, si lo hubiera;<c>null</c> en caso
+            contrario.</returns>
+        </member>
+        <member name="P:Ucu.Poo.DiscordBot.Domain.IUsersRepository.AllUsers">
+            <summary>
+            Obtiene una colección con todos los usuarios <see cref="T:Ucu.Poo.DiscordBot.Domain.User"/>.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Domain.UsersRepository">
+            <summary>
+            Un repositorio de usuarios <see cref="T:Ucu.Poo.DiscordBot.Domain.User"/>.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Domain.UsersRepository.#ctor">
+            <summary>
+            Inicializa una nueva instancia de esta clase. Agrega el primer
+            <see cref="T:Ucu.Poo.DiscordBot.Domain.User"/> que es un administrador, para que luego ese
+            usuario pueda agregar a los demás usuarios. El nombre de usuario de
+            este administrador se obtiene junto con el token del bot en
+            <see cref="M:Library.Services.Bot.StartAsync(Microsoft.Extensions.DependencyInjection.ServiceProvider)"/>.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Domain.UsersRepository.Find(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Ucu.Poo.DiscordBot.Domain.UsersRepository.AllUsers">
+            <summary>
+            <inheritdoc/>
+            </summary>
         </member>
     </members>
 </doc>
